@@ -11,6 +11,28 @@
         <a href="index.html">Home</a>
         <a href="bulk-order.html">Order Bulk</a>
     </nav>
-    <h1>Welcome to T-Shirt Store</h1>
+
+    <h1>Welcome to Our T-Shirt Store</h1>
+
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <img src="tshirt1.jpg" alt="T-Shirt 1">
+        <img src="tshirt2.jpg" alt="T-Shirt 2">
+    </section>
+
+    <section id="products">
+        <h2>Products</h2>
+        <div class="product">
+            <img src="tshirt1.jpg" alt="T-Shirt">
+            <p>Classic T-Shirt - $10</p>
+            <button onclick="orderNow()">Order Now</button>
+        </div>
+    </section>
+
+    <script>
+        function orderNow() {
+            window.location.href = "order.html";
+        }
+    </script>
 </body>
-</html>
+
