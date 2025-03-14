@@ -1,1 +1,44 @@
+<body>
+    <h1>Order Your T-Shirt</h1>
+    <form id="orderForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="text" id="department" placeholder="Department" required>
+        <input type="text" id="class" placeholder="Class" required>
+        <input type="text" id="phone" placeholder="Phone Number" required>
+        <input type="number" id="quantity" placeholder="Quantity" required>
+        <select id="size">
+            <option value="S">Small</option>
+            <option value="M">Medium</option>
+            <option value="L">Large</option>
+        </select>
+        <button type="submit">Place Order</button>
+    </form>
+
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyB2LjGo5PtktDsUTrsonXu85GB4QZ6fo-4",
+            authDomain: "your-project.firebaseapp.com",
+            projectId: "tshirt-store-data",
+            storageBucket: "t-shirt-store-data.firebasestorage.app",
+            messagingSenderId: "751230496644",
+            appId: "1:751230496644:web:3d2e5a9f6be6b4c1",
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        document.getElementById("orderForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            db.collection("orders").add({
+                name: document.getElementById("name").value,
+                phone: document.getElementById("phone").value,
+                quantity: document.getElementById("quantity").value,
+                size: document.getElementById("size").value
+            }).then(() => {
+                alert("Order placed successfully!");
+            });
+        });
+    </script>
+</body>
 
