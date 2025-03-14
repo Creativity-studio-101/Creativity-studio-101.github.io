@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Shirt Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#bulk-order">Order Bulk</a></li>
+        </ul>
+    </nav>
+    
+    <section id="home">
+        <h1>Welcome to Our T-Shirt Store</h1>
+        <div id="gallery">
+            <!-- Gallery images will be inserted dynamically -->
+        </div>
+        <h2>Available Products</h2>
+        <div id="product-list">
+            <!-- Product listings will be inserted dynamically -->
+        </div>
+    </section>
+    
+    <section id="order-form">
+        <h2>Place Your Order</h2>
+        <form id="orderForm">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="text" id="department" placeholder="Department" required>
+            <input type="text" id="class" placeholder="Class" required>
+            <input type="tel" id="phone" placeholder="Phone Number" required>
+            <input type="number" id="quantity" placeholder="Quantity" required>
+            <select id="size">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
+            <button type="submit">Submit Order</button>
+        </form>
+    </section>
+    
+    <script src="script.js"></script>
+</body>
+</html>
