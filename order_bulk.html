@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Order</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="order_bulk.html">Order Bulk</a>
+    </nav>
+
+    <h1>Bulk Order Form</h1>
+    <form id="bulkOrderForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="text" id="department" placeholder="Department" required>
+        <input type="text" id="class" placeholder="Class" required>
+        <input type="text" id="phone" placeholder="Phone Number" required>
+        
+        <h3>Select T-Shirts</h3>
+        <div id="productContainer">
+            <div class="product-group">
+                <input type="text" name="product[]" placeholder="Product Name" required>
+                <input type="number" name="quantity[]" placeholder="Quantity" required>
+                <select name="size[]" required>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <button type="button" onclick="addProduct()">Add More</button>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit">Place Bulk Order</button>
+    </form>
+
+    <script>
+        function addProduct() {
+            const container = document.getElementById('productContainer');
+            const productGroup = document.createElement('div');
+            productGroup.className = 'product-group';
+            productGroup.innerHTML = `
+                <input type="text" name="product[]" placeholder="Product Name" required>
+                <input type="number" name="quantity[]" placeholder="Quantity" required>
+                <select name="size[]">
+                    <option value="M">Medium</option>
+                    <option value="L">Large</option>
+                    <option value="XL">XL</option>
+                </select>
+                <button type="button" onclick="removeProduct(this)">Remove</button>
+            `;
+            container.appendChild(productGroup);
+        }
+
+        function removeProduct(button) {
+            button.parentElement.remove();
+        }
+
+        document.getElementById('bulkOrderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            fetch("https://script.google.com/macros/s/AKfycbx6efdyBzy0BzyBzyBzyBzyBzyBzyBzyBzy/exec", {
+                method: "POST",
+                body: new FormData(document.getElementById("bulkOrderForm"))
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert("Bulk Order Placed Successfully!");
+                document.getElementById("bulkOrderForm").reset();
+            })
+            .catch(error => {
+                alert("Error submitting order!");
+            });
+        });
+    </script>
+</body>
+</html>
